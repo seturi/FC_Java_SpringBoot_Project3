@@ -32,9 +32,5 @@ public class ItemRepositoryTest extends StudyApplicationTests {
         Optional<Item> item = itemRepository.findById(id);
 
         assertTrue(item.isPresent());
-
-        item.ifPresent(i -> {
-            System.out.println(i);
-        });
     }
 }
