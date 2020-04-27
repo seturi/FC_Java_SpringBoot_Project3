@@ -3,6 +3,7 @@ package com.example.study.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString(exclude = {"orderGroup", "item"})
 public class OrderDetail {
 
     @Id
@@ -20,7 +22,7 @@ public class OrderDetail {
 
     private String status;
 
-    private LocalDateTime orderAt;
+    private LocalDateTime arrivalDate;
 
     private Integer quantity;
 
@@ -33,5 +35,13 @@ public class OrderDetail {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
+
+    // OrderDetail N : 1 OrderGroup
+    @ManyToOne
+    private OrderGroup orderGroup;
+
+    // OrderDetail N : 1 Item
+    @ManyToOne
+    private Item item;
 
 }
